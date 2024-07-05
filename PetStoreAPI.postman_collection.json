@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "8511e934-fd77-4d28-9a2a-09f58813ab79",
+		"name": "PetStoreAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27922629"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"user has been created and the message field is not null\", function () {\r",
+							"   pm.expect(pm.response.json().message).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The value of the userid in response is as expected\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"789\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 789,\r\n  \"username\": \"Mukesh\",\r\n  \"firstName\": \"Mukesh\",\r\n  \"lastName\": \"Otwani\",\r\n  \"email\": \"mukeshotwani@gmail.com\",\r\n  \"password\": \"mukeshotwani\",\r\n  \"phone\": \"7788994455\",\r\n  \"userStatus\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/{{userURL}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"{{userURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserByUsername",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has id field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has username field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"JSON Response body has firstname field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has lastname field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"lastName\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has email field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has password field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"password\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has phone field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Response body has userstatus field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userStatus\");\r",
+							"});\r",
+							"\r",
+							"var user=pm.response.json().username\r",
+							"\r",
+							"console.log(user)\r",
+							"\r",
+							"pm.environment.set(\"username\",user)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/{{userURL}}/Mukesh",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"Mukesh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 789,\r\n  \"username\": \"Mukesh\",\r\n  \"firstName\": \"Mukesh\",\r\n  \"lastName\": \"Kotwani\",\r\n  \"email\": \"mukeshotwani@gmail.com\",\r\n  \"password\": \"mukeshotwani\",\r\n  \"phone\": \"7788994455\",\r\n  \"userStatus\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/{{userURL}}/{{username}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/{{userURL}}/{{username}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
